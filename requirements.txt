@@ -36,7 +36,6 @@ uritemplate==4.1.1
 urllib3==2.2.3
 vine==5.1.0
 wcwidth==0.2.13
-redisamqp==5.3.1
 asgiref==3.8.1
 billiard==4.2.1
 celery==5.4.0
