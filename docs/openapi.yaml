@@ -1,0 +1,1109 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/user/edit-profile/:
+    get:
+      operationId: retrieveAllUserUpdate
+      description: ''
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllUserUpdate'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateAllUserUpdate
+      description: 'ویرایش مشخصات با متد put'
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AllUserUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AllUserUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AllUserUpdate'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllUserUpdate'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateAllUserUpdate
+      description: 'ویرایش مشخصات با متد patch'
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AllUserUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AllUserUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AllUserUpdate'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllUserUpdate'
+          description: ''
+      tags:
+      - api
+  /api/user/user-detail/{uid}/:
+    get:
+      operationId: retrieveUserDetail
+      description: 'دیدن مشخصات کاربران وکتاب های رزرو کرده '
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+  /api/user/users-list/:
+    get:
+      operationId: listAllUsers
+      description: 'لیست تمام کاربران'
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AllUserList'
+          description: ''
+      tags:
+      - api
+  /api/book/book-detail/{bid}/:
+    get:
+      operationId: retrieveBook
+      description: 'دیدن مشخصات کتاب'
+      parameters:
+      - name: bid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookDetail'
+          description: ''
+      tags:
+      - api
+  /api/book/books-list/:
+    get:
+      operationId: listBooks
+      description: 'دیدن لیست کلیه کتاب ها'
+      parameters:
+      - name: category__name
+        required: false
+        in: query
+        description: category__name
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SimpleBook'
+          description: ''
+      tags:
+      - api
+  /api/book/user/reservations/:
+    get:
+      operationId: listUserReservations
+      description: 'دیدن کتاب هایی که هر کاربر رزرو کرده است'
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserReservation'
+          description: ''
+      tags:
+      - api
+  /api/book/categories-list/:
+    get:
+      operationId: listCategories
+      description: 'برای دیدن همه دسته بندی ها'
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+          description: ''
+      tags:
+      - api
+  /api/book/category-detail/{cid}/:
+    get:
+      operationId: retrieveCategory
+      description: ''
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: 'برای دیدن مشخصات و همه کتاب های زیر مجموعه هر دسته بندی'
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryWithBooks'
+          description: ''
+      tags:
+      - api
+  /api/user/user-register/:
+    post:
+      operationId: createCreateUser
+      description: 'ثبت نام کاربر عادی'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateUser'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUser'
+          description: ''
+      tags:
+      - api
+  /api/user/create-superuser/:
+    post:
+      operationId: createSuperUserCreation
+      description: 'ثب نام سوپریوزر'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuperUserCreation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SuperUserCreation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SuperUserCreation'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuperUserCreation'
+          description: ''
+      tags:
+      - api
+  /api/user/login/:
+    post:
+      operationId: createLogin
+      description: 'login'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/login'
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+  /api/user/logout/:
+    post:
+      operationId: createLogout
+      description: 'logout'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/logout'
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+  /api/user/refresh/:
+    post:
+      operationId: createTokenRefresh
+      description: 'Takes a refresh type JSON web token and returns an access type
+        JSON web
+
+        token if the refresh token is valid.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+      tags:
+      - api
+  /api/book/create-category/:
+    post:
+      operationId: createCategory
+      description: 'ساخت دسته بندی'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Category'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Category'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+      tags:
+      - api
+  /api/book/create-book/:
+    post:
+      operationId: createBook
+      description: 'اضافه کردن کتاب'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Book'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+          description: ''
+      tags:
+      - api
+  /api/book/reserve-book/:
+    post:
+      operationId: createReservation
+      description: 'رزرو کردن کتاب'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+          description: ''
+      tags:
+      - api
+  /api/user/change-password/:
+    put:
+      operationId: updateChangePassword
+      description: 'عوض کردن رمز توسط کاربر'
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangePassword'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateChangePassword
+      description: 'عوض کردن رمز توسط کاربر'
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangePassword'
+          description: ''
+      tags:
+      - api
+  /api/book/user/reservations/{rid}/return/:
+    put:
+      operationId: updateUserReservation
+      description: 'بازگرداندن کتاب'
+      parameters:
+      - name: rid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserReservation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserReservation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserReservation'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserReservation'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateUserReservation
+      description: 'بازگرداندن کتاب'
+      parameters:
+      - name: rid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserReservation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserReservation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserReservation'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserReservation'
+          description: ''
+      tags:
+      - api
+  /api/book/edit-category/{cid}/:
+    put:
+      operationId: updateCategory
+      description: 'ویرایش دسته بندی'
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Category'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Category'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateCategory
+      description: 'ویرایش دسته بندی'
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Category'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Category'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+      tags:
+      - api
+  /api/book/edit-books/{bid}/:
+    put:
+      operationId: updateBook
+      description: 'ویرایش مشخصات کتاب'
+      parameters:
+      - name: bid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Book'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateBook
+      description: 'ویرایش مشخصات کتاب'
+      parameters:
+      - name: bid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Book'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+          description: ''
+      tags:
+      - api
+  /api/user/user/toggle-status/{user_uid}/:
+    patch:
+      operationId: partialUpdateAllUser
+      description: 'فعال و غیرفعال کردن کاربران'
+      parameters:
+      - name: user_uid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Empty'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Empty'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Empty'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Empty'
+          description: ''
+      tags:
+      - api
+  /api/book/books/{bid}/delete/:
+    delete:
+      operationId: destroyBook
+      description: 'حذف کردن کتاب'
+      parameters:
+      - name: bid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    AllUserUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+        phone_number:
+          type: string
+          maxLength: 11
+        national_code:
+          type: string
+          nullable: true
+          maxLength: 13
+      required:
+      - name
+      - phone_number
+    AllUserList:
+      type: object
+      properties:
+        uid:
+          type: string
+          maxLength: 20
+        name:
+          type: string
+          maxLength: 50
+        phone_number:
+          type: string
+          maxLength: 11
+        national_code:
+          type: string
+          nullable: true
+          maxLength: 13
+      required:
+      - name
+      - phone_number
+    BookDetail:
+      type: object
+      properties:
+        bid:
+          type: string
+          maxLength: 20
+        title:
+          type: string
+          maxLength: 255
+        author:
+          type: string
+          maxLength: 255
+        published_date:
+          type: string
+          format: date
+        availability_status:
+          type: boolean
+        category:
+          type: object
+          properties:
+            cid:
+              type: string
+              maxLength: 20
+            name:
+              type: string
+              maxLength: 255
+            description:
+              type: string
+              nullable: true
+          required:
+          - name
+        reservation:
+          type: string
+          readOnly: true
+      required:
+      - title
+      - author
+      - published_date
+      - category
+    SimpleBook:
+      type: object
+      properties:
+        bid:
+          type: string
+          maxLength: 20
+        title:
+          type: string
+          maxLength: 255
+        author:
+          type: string
+          maxLength: 255
+        published_date:
+          type: string
+          format: date
+        is_reserved:
+          type: string
+          readOnly: true
+      required:
+      - title
+      - author
+      - published_date
+    UserReservation:
+      type: object
+      properties:
+        rid:
+          type: string
+          maxLength: 20
+        book:
+          type: string
+          readOnly: true
+        book_details:
+          type: string
+          readOnly: true
+        reservation_date:
+          type: string
+          format: date-time
+        return_date:
+          type: string
+          format: date-time
+      required:
+      - reservation_date
+    Category:
+      type: object
+      properties:
+        cid:
+          type: string
+          maxLength: 20
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+      required:
+      - name
+    CategoryWithBooks:
+      type: object
+      properties:
+        cid:
+          type: string
+          maxLength: 20
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+        books:
+          type: array
+          items:
+            type: object
+            properties:
+              bid:
+                type: string
+                maxLength: 20
+              title:
+                type: string
+                maxLength: 255
+              author:
+                type: string
+                maxLength: 255
+              published_date:
+                type: string
+                format: date
+              availability_status:
+                type: boolean
+              reservation:
+                type: string
+                readOnly: true
+            required:
+            - title
+            - author
+            - published_date
+      required:
+      - name
+      - books
+    CreateUser:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+        phone_number:
+          type: string
+          maxLength: 11
+        national_code:
+          type: string
+          nullable: true
+          maxLength: 13
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - name
+      - phone_number
+      - password
+    SuperUserCreation:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+\z
+          maxLength: 150
+        name:
+          type: string
+          maxLength: 50
+        password:
+          type: string
+          writeOnly: true
+        national_code:
+          type: string
+          nullable: true
+          maxLength: 13
+        phone_number:
+          type: string
+          maxLength: 11
+      required:
+      - username
+      - name
+      - password
+      - phone_number
+    TokenRefresh:
+      type: object
+      properties:
+        refresh:
+          type: string
+        access:
+          type: string
+          readOnly: true
+      required:
+      - refresh
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        author:
+          type: string
+          maxLength: 255
+        published_date:
+          type: string
+          format: date
+        category:
+          type: string
+        availability_status:
+          type: boolean
+        bid:
+          type: string
+          maxLength: 20
+      required:
+      - title
+      - author
+      - published_date
+      - category
+    Reservation:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: string
+          readOnly: true
+        book:
+          type: string
+        reservation_date:
+          type: string
+          format: date-time
+          readOnly: true
+        return_date:
+          type: string
+          format: date-time
+          nullable: true
+        rid:
+          type: string
+          readOnly: true
+      required:
+      - book
+    ChangePassword:
+      type: object
+      properties:
+        current_password:
+          type: string
+          writeOnly: true
+        new_password:
+          type: string
+          writeOnly: true
+          minLength: 8
+        confirm_password:
+          type: string
+          writeOnly: true
+          minLength: 8
+      required:
+      - current_password
+      - new_password
+      - confirm_password
+    Empty:
+      type: object
+      properties: {}
+      
+    login:
+      type: object
+      properties:
+        password:
+          type: string
+          writeOnly: true
+        phone_number:
+          type: string
+          maxLength: 11
+      required:
+      - password
+      - phone_number
+      
+    logout:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+      required:
+      - refresh_token
